@@ -60,11 +60,7 @@ https://github.com/PradeepPotteti/C_CPP_Hello_world_Jenkins/settings/hooks/
 
 ex: http://1xxxxxxxxxxx.ngrok.io/github-webhook/
 
-
 ========
-
-git configuration for new repo
-Linux
 
 In github.com/PradeepPotteti/
 
