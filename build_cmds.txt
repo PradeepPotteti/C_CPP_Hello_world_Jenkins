@@ -1,0 +1,97 @@
+Job-1 (Git-Job)
+
+#GIT
+#https://github.com/PradeepPotteti/C_CPP_Hello_world_Jenkins.git
+
+#Build periodically
+#59 * * * *
+
+#GitHub hook trigger for GITScm polling
+
+#Build Environment
+#Delete workspace before build starts
+
+#Build Command:
+
+date
+sleep 5s
+date
+make
+sleep 2s
+rm -rf ../build_repo
+sleep 2s
+mkdir -p ../build_repo
+cp hello_* ../build_repo/
+
+
+#chetan@PetaSoft:~$ ls -l /var/lib/jenkins/workspace/
+#build_repo/    Git-Job/       Git-Job-test1/ Job1/          Job2/          Job3/          
+#chetan@PetaSoft:~$
+#
+
+
+Job-2 (Git-Job-test1)
+
+Build Triggers
+
+Build after other projects are built
+
+Projects to watch
+Git-Job
+Trigger only if build is stable
+
+
+#!/bin/bash
+date
+cp -rf ../build_repo/* .
+date
+sleep 5
+'./hello_exec'
+date
+sleep 2
+
+
+#Github Webhook for Jenkins GIT SCM polling or GIT push trigger
+
+use "sudo ./ngrok http 8080" to generate or get Internet accessible IP address for jenkins running on localhost:8080
+
+add this ip address in
+https://github.com/PradeepPotteti/C_CPP_Hello_world_Jenkins/settings/hooks/
+
+ex: http://1xxxxxxxxxxx.ngrok.io/github-webhook/
+
+
+========
+
+git configuration for new repo
+Linux
+
+In github.com/PradeepPotteti/
+
+create a new repo (public/private)
+ex: C_CPP_Hello_world_Jenkins.git 
+
+In Linux local system
+mkdir C_CPP_Hello_world_Jenkins
+cd C_CPP_Hello_world_Jenkins/
+
+git --version
+git init
+
+sudo git config --global user.name "Pradeep Potteti"
+sudo git config --global user.email "potteti.pradeep@gmail.com""
+git config --list
+
+git status
+git add *
+git status
+git commit -m "Jenkins Hello-World C/C++"
+git status
+git log
+git show dad0346daca28a8b5c335493ffd4b15fe55a0bab
+
+git remote add origin https://github.com/PradeepPotteti/C_CPP_Hello_world_Jenkins.git
+#check github.com/PradeepPotteti/ Developer Settings for PAT (password/tokens) and access settings
+git push --verbose origin master
+
+
